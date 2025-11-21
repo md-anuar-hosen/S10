@@ -1,8 +1,7 @@
 # S10 – Refactor, Error Rules, Idempotency, Review Checklist
 
 **Team:** Md Hosen, Ahmed Bahgat
-**Repo:** https://github.com/YOUR-USERNAME/YOUR-REPO
-
+**Repo:** https://github.com/md-anuar-hosen/S10/tree/main/S10
 ## Scope
 
 This S10 refactor focuses on:
