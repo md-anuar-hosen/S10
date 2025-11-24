@@ -3,45 +3,54 @@
 Team: Md Hosen, Ahmed Bahgat  
 Repo: https://github.com/md-anuar-hosen/S10
 
-## Scope
+ # S10 – Implementation Essentials (Evidence Index)
 
-This S10 refactor focuses on the **Room Booking** feature:
+## PR-S10
+Refactor PR (merged into main):
+https://github.com/md-anuar-hosen/S10/pull/1
 
-- **Target:** `BookingService.createBooking` in `src/booking/BookingService.ts`
-- **Endpoint:** `POST /v1/bookings`
-- **Goals:**
-  - Improve readability and modularity (smaller, focused helpers).
-  - Standardize error handling according to `/docs/errors/ERROR_RULES.md`.
-  - Ensure idempotent POST-create behavior via the `Idempotency-Key` header.
-  - Apply `Review_Checklist_v1.md` in a real PR (PR-S10).
-  - Use AI only as a **companion** (naming, micro-tests, refactor plan) and log provenance.
+## CI Evidence
+Green CI run for PR-S10:
+https://github.com/md-anuar-hosen/S10/actions/runs/19632095548
 
-## Evidence
+## Refactored Function
+BookingService.createBooking  
+Path: `src/booking/BookingService.js`
 
-### Refactor & DIFF
+## Tests Added/Updated
+- `tests/booking/createBooking.test.js`  
+Covers:
+- Happy path (201)
+- Validation error (400_INVALID_DATE_RANGE)
+- Idempotency behaviour (201 then 200 with same key)
 
-- Refactor PR (PR-S10): `<ADD LINK TO PR HERE>`
-- DIFF summary and peer comments: [`/S10/refactor/DIFF.md`](./refactor/DIFF.md)
+## Error Model Alignment
+Errors follow `problem+json` shape:
+- `status`
+- `code`
+- `hint`
+- `correlationId`
 
-- Refactored code:
-  - `src/booking/BookingService.ts`
-  - `src/booking/BookingValidator.ts` (new helper module)
-  - `src/booking/IdempotencyStore.ts` (simple in-memory or DB wrapper)
+Validation errors map to 400_xxx codes.  
+Conflict maps to `409_BOOKING_CONFLICT`.  
+Unexpected errors map to `500_INTERNAL_ERROR`.
 
-- Tests (behavior parity and contracts):
-  - `tests/booking/createBooking.unit.test.ts`
-  - `tests/booking/createBooking.contract.test.ts`
+## Idempotency Evidence
+Demonstrated in test:
+`"createBooking is idempotent for same Idempotency-Key"`
 
-### Error Rules & Idempotency
+Implemented via `InMemoryIdempotencyStore`.
 
-- Error rules: [`/docs/errors/ERROR_RULES.md`](../docs/errors/ERROR_RULES.md)
+## Review Checklist
+Located at:
+`/docs/review/Review_Checklist_v1.md`
 
-`POST /v1/bookings` uses `application/problem+json` with:
+## AI Use Log
+Located at:
+`/docs/ai/AI_Use_Log.md`
+Includes accepted/rejected AI suggestions and verification proof.
 
-```json
-{
-  "status": 400,
-  "code": "400_INVALID_INPUT",
-  "hint": "Check required fields: roomId, startTime, endTime, guestEmail",
-  "correlationId": "UUID"
-}
+## Error Rules
+Located at:
+`/docs/errors/ERROR_RULES.md`
+
