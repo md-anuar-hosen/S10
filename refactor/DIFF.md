@@ -1,9 +1,4 @@
-
----
-
-## 3. `/S10/refactor/DIFF.md`
-
-```markdown
+ 
 # S10 Refactor – BookingService.createBooking
 
 ## Target
