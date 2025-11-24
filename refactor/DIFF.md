@@ -100,7 +100,7 @@ Observed behavior (S10 commit):
    - Status: `200 OK`
    - Body: `{ "bookingId": "bkg-123", ... }`
 
-Evidence: `<ADD LINK TO CI TEST OR SCREENSHOT/LOG HERE>`
+ 
 
 ## Peer Review Notes
 
@@ -109,4 +109,4 @@ Evidence: `<ADD LINK TO CI TEST OR SCREENSHOT/LOG HERE>`
 - **Question:** Reviewer asked whether cancellations should also use idempotency to avoid double-cancel side effects – captured as a follow-up story.
 
 Reviewer: `@<REVIEWER_HANDLE>`  
-PR: `<LINK TO PR-S10>`
+ 
